@@ -1,427 +1,619 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        body {transition: opacity ease-in 0.2s; } 
+        body[unresolved] {opacity: 0; display: block; overflow: hidden; position: relative; } 
+    </style>
 
   <title>Meruyert Mukhitkyzy</title>
-
+  <meta charset="UTF-8">
   <link rel="icon" type="image/x-icon" href="./landing/logo.svg">
-
   <meta name="description" content="Personal Website">
   <meta name="keywords" content="portfolio, project management, PR, brand management, marketing, digital design">
   <meta name="author" content="Meruyert Mukhitkyzy">
 
   <style>
-    * {
-      box-sizing: border-box;
-    }
-
-    html,
-    body {
+  html, body {
       margin: 0;
       padding: 0;
-      width: 100%;
-      min-height: 100svh;
+      width: 100vw;
+      height: 100vh;
+      overflow: hidden;
     }
 
     body {
       background-image: url("./landing/background.png");
       background-size: cover;
-      background-position: center;
       background-repeat: repeat;
       font-family: Arial, sans-serif;
-
-      display: grid;
-      place-items: center;
-
-      overflow: hidden;
+      cursor: auto;
     }
 
-    .landing-page {
-      width: min(100vw, calc(100svh * 1.88));
-      aspect-ratio: 1.88 / 1;
-      position: relative;
-      overflow: hidden;
-    }
-
-    .landing-page img {
-      display: block;
+    .overlay {
+      position: fixed;
       width: 100%;
-      height: auto;
-      user-select: none;
-    }
-
-    .item {
-      position: absolute;
-    }
-
-    .item a,
-    a.item {
-      display: block;
-    }
-
-    a.item:hover {
-      cursor: pointer;
-      transform: rotate(var(--hover-rotate, 0deg)) scale(1.03);
-    }
-
-    /* Background / frame */
-
-    .eyebrow {
+      height: 100%;
       top: 0;
       left: 0;
+      z-index: -1;
+    }
+    .mainheaderimage {
       width: 100%;
-      z-index: 1;
+      height: auto;
+      display: block;
+      z-index: -5;
+    }
+    .container {
+      position: relative;
+      width: 100vw;
+      height: 100vh;
+      min-width: 100vw;
+      min-height: 100vh;
+      overflow: hidden;
+    }
+    .vertical-center {
+    position: absolute;
+      top: 50vh;
+      left: 50vw;
+      transform: translate(-50%, -50%) scale(1);
+      transform-origin: center center;
     }
 
-    .header {
-      top: 18%;
-      left: 28%;
-      width: 42%;
-      z-index: 5;
+    @media (max-height: 730px) {
+      .vertical-center {
+        transform: translate(-50%, -50%) scale(0.9);
+      }
+    }
+
+    #eyebrow {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: auto;
+      z-index: -10;
+    }
+    #eyebrow img {
+      width: 100vw !important;
+      height: auto !important;
+      display: block;
+    }
+
+    #header {
+      position: absolute;
+      top: -17.8vw;
+      left: -23.45vw;
+      width: 48.27vw; 
+      height: auto;
+      z-index: -5;
+    }
+    #header img {
+      width: 90%;
+      height: auto;
+      display: block;
+    }
+
+    .workspicture {
+      position: absolute;
+      top: 14vw;
+      left: 5vw;
+      transform: rotate(0deg);
+    }
+    .workspicture img {
+      width: 15vw !important;
+      height: auto !important;
+      display: block;
+    }
+
+    .skillspicture {
+      position: absolute;
+      top: 27vw;
+      left: 25vw;
+      transform: rotate(0deg);
+    }
+    .skillspicture img {
+      width: 13vw !important;
+      height: auto !important;
+      display: block;
+    }
+
+    .myresumepicture {
+      position: absolute;
+      top: 11vw;
+      left: 38vw;
+      transform: rotate(0deg);
+    }
+    .myresumepicture img {
+      width: 10vw !important;
+      height: auto !important;
+      display: block;
+    }
+
+    .aboutpicture {
+      position: absolute;
+      top: 2.5vw;
+      left: 53.65vw;
+      transform: rotate(0deg);
+    }
+    .aboutpicture img {
+      width: 10vw !important;
+      height: auto !important;
+      display: block;
     }
 
     .logo {
-      top: 22%;
-      left: 22%;
-      width: 6.5%;
-      z-index: 6;
+      position: absolute;
+      top: 1.5vw;
+      left: -7.45vw;
+      transform: rotate(0deg);
     }
-
-    .dreambigger {
-      top: 0%;
-      left: 5%;
-      width: 13.5%;
-      z-index: 7;
-    }
-
-    .me {
-      bottom: 0%;
-      left: 0%;
-      width: 20%;
-      z-index: 8;
-    }
-
-    .frame1 {
-      bottom: 0%;
-      left: 0%;
-      width: 9%;
-      z-index: 9;
-    }
-
-    .frame2 {
-      bottom: 0%;
-      right: 0%;
-      width: 9%;
-      z-index: 9;
-    }
-
-    .stitches-bottom {
-      bottom: 1.5%;
-      left: 2%;
-      width: 96%;
-      z-index: 2;
-    }
-
-    .stitches-left {
-      top: 14%;
-      left: 1.5%;
-      width: 2.2%;
-      z-index: 2;
-    }
-
-    .stitches-right {
-      top: 14%;
-      right: 1.5%;
-      width: 2.2%;
-      z-index: 2;
-    }
-
-    /* Decorative elements */
-
-    .works-picture {
-      top: 68%;
-      left: 32%;
-      width: 13%;
-      z-index: 6;
-    }
-
-    .skills-picture {
-      top: 66%;
-      left: 51%;
-      width: 12%;
-      z-index: 6;
-    }
-
-    .resume-picture {
-      top: 40%;
-      left: 65%;
-      width: 10%;
-      z-index: 6;
-    }
-
-    .about-picture {
-      top: 25%;
-      left: 79%;
-      width: 10%;
-      z-index: 6;
+    .logo img {
+      width: 7vw !important;
+      height: auto !important;
+      display: block;
     }
 
     .mushrooms {
-      bottom: 1%;
-      right: 7%;
-      width: 20%;
-      z-index: 6;
+      position: absolute;
+      bottom: -33.10vw;
+      left: 55vw;
+      z-index: 1;
+      transform: rotate(0deg);
+    }
+    .mushrooms img {
+      width: 20vw !important;
+      height: auto !important;
+      display: block;
     }
 
-    .dove {
-      top: 39%;
-      left: 23%;
-      width: 9%;
-      z-index: 6;
+    .dreambigger {
+      position: absolute;
+      top: -12vw;
+      left: -27vw;
+      transform: rotate(0deg);
+    }
+    .dreambigger img {
+      width: 17vw !important;
+      height: auto !important;
+      display: block;
     }
 
-    .duck {
-      top: 34%;
-      left: 16%;
-      width: 8%;
-      z-index: 6;
+    .me {
+      position: absolute;
+      top: 15.5vw;
+      left: -32.03vw;
+      transform: rotate(0deg);
+    }
+    .me img {
+      width: 32vw !important;
+      height: auto !important;
+      display: block;
     }
 
-    .bee {
-      top: 36%;
-      left: 49%;
-      width: 7%;
-      z-index: 7;
+    .frame1 {
+      position: absolute;
+      bottom: -35vw;
+      left: -31vw;
+      transform: rotate(0deg);
+    }
+    .frame1 img {
+      width: 9vw !important;
+      height: auto !important;
+      display: block;
+    }
+
+    .frame2 {
+      position: absolute;
+      bottom: -35vw;
+      right: -30vw;
+      transform: rotate(0deg);
+      z-index: -5;
+    }
+    .frame2 img {
+      width: 9vw !important;
+      height: auto !important;
+      display: block;
+    }
+
+    .stitches1 {
+      position: absolute;
+      top: 44.5vw;
+      left: -30vw;
+      transform: rotate(0deg);
+      z-index: -10;
+    }
+    .stitches1 img {
+      width: 100vw !important;
+      height: auto !important;
+      display: block;
+    }
+
+    .stitches2 {
+      position: absolute;
+      bottom: -26vw;
+      right: -30vw;
+      transform: rotate(0deg);
+      z-index: -10;
+    }
+    .stitches2 img {
+      width: 2.5vw !important;
+      height: auto !important;
+      display: block;
+    }
+
+    .stitches3 {
+      position: absolute;
+      bottom: -26vw;
+      left: -31.5vw;
+      transform: rotate(0deg);
+        z-index: -10;
+    }
+    .stitches3 img {
+      width: 2.5vw !important;
+      height: auto !important;
+      display: block;
+    }
+
+    .notmobilefriendly {
+      position: absolute;
+      bottom: -35vw;
+      left: -3vw;
+      transform: rotate(-2deg);
+        z-index: -10;
+    }
+    .notmobilefriendly img {
+      width: 20vw !important;
+      height: auto !important;
+      display: block;
     }
 
     .boy {
-      bottom: 23%;
-      right: 7%;
-      width: 9%;
-      z-index: 7;
+      position: absolute;
+      bottom: -17vw;
+      left: 62vw;
+      transform: rotate(-2deg);
+        z-index: -10;
+    }
+    .boy img {
+      width: 10vw !important;
+      height: auto !important;
+      display: block;
+    }
+
+    .bee {
+      position: absolute;
+      bottom: -6vw;
+      left: 23vw;
+      transform: rotate(-2deg);
+        z-index: -10;
+    }
+    .bee img {
+      width: 7vw !important;
+      height: auto !important;
+      display: block;
+    }
+
+    .duck {
+      position: absolute;
+      bottom: -7vw;
+      left: -14vw;
+      transform: rotate(-2deg);
+        z-index: -10;
+    }
+    .duck img {
+      width: 8vw !important;
+      height: auto !important;
+      display: block;
     }
 
     .chicken {
-      bottom: 1%;
-      left: 68%;
-      width: 10%;
-      z-index: 7;
-    }
-
-    .not-mobile-friendly {
-      bottom: 4%;
-      left: 27%;
-      width: 20%;
-      z-index: 7;
+      position: absolute;
+      bottom: -35vw;
+      left: 42vw;
       transform: rotate(-2deg);
+        z-index: -10;
+    }
+    .chicken img {
+      width: 10vw !important;
+      height: auto !important;
+      display: block;
     }
 
-    /* Clickable notes */
-
-    .works-note {
-      top: 71%;
-      left: 35%;
-      width: 10%;
-      z-index: 20;
-      --hover-rotate: -5deg;
+    .dove {
+      position: absolute;
+      bottom: -10vw;
+      left: -5vw;
+      transform: rotate(-7deg);
+        z-index: -10;
+    }
+    .dove img {
+      width: 10vw !important;
+      height: auto !important;
+      display: block;
     }
 
-    .resume-note {
-      top: 45%;
-      left: 73%;
-      width: 10%;
-      z-index: 20;
-      --hover-rotate: -5deg;
+    .worksnote {
+      position: absolute;
+      top: 30vw;
+      right: 30.69vw;
+      transform: rotate(0deg);
+    }
+    .worksnote:hover {
+      cursor: pointer;
+      transform: rotate(-5deg);
+    }
+    .worksnote img {
+      width: 10vw !important;
+      height: auto !important;
+      display: block;
     }
 
-    .skills-note {
-      top: 85%;
-      left: 53%;
-      width: 10%;
-      z-index: 20;
-      --hover-rotate: 5deg;
+    .myresumenote {
+      position: absolute;
+      top: 15vw;
+      right: -10.7vw;
+      transform: rotate(0deg);
+    }
+    .myresumenote:hover {
+      cursor: pointer;
+      transform: rotate(-5deg);
+    }
+    .myresumenote img {
+      width: 10vw !important;
+      height: auto !important;
+      display: block;
     }
 
-    .about-note {
-      top: 16%;
-      left: 78%;
-      width: 9%;
-      z-index: 20;
-      --hover-rotate: 5deg;
+    .skillsnote {
+      position: absolute;
+      bottom: -31vw;
+      right: 11.7vw;
+      transform: rotate(0deg);
+      filter: contrast(100%) brightness(100%);
+    }
+    .skillsnote:hover {
+      cursor: pointer;
+      transform: rotate(5deg);
+    }
+    .skillsnote img {
+      width: 10vw !important;
+      height: auto !important;
+      display: block;
     }
 
-    /* Social icons */
+    .aboutmenote {
+      position: absolute;
+      top: -3vw;
+      right: -15vw;
+      transform: rotate(0deg);
+    }
+    .aboutmenote:hover {
+      cursor: pointer;
+      transform: rotate(5deg);
+    }
+    .aboutmenote img {
+      width: 9vw !important;
+      height: auto !important;
+      display: block;
+    }
 
     .envelope {
-      top: 31%;
-      right: 3%;
-      width: 5%;
-      z-index: 20;
-      --hover-rotate: 5deg;
+      position: absolute;
+      top: 6vw;
+      right: -27.5vw;
+      transform: rotate(0deg);
+    }
+    .envelope:hover {
+      cursor: pointer;
+      filter: hue-rotate(250deg) saturate(100%);
+      transform: rotate(5deg);
+    }
+    .envelope img {
+      width: 5vw !important;
+      height: auto !important;
+      display: block;
     }
 
     .github {
-      top: 41%;
-      right: 3%;
-      width: 4.5%;
-      z-index: 20;
-      --hover-rotate: -10deg;
+      position: absolute;
+      top: 11vw;
+      right: -27.3vw;
+      transform: rotate(0deg);
+    }
+    .github:hover {
+      cursor: pointer;
+      filter: hue-rotate(150deg) saturate(100%);
+      transform: rotate(-10deg);
+    }
+    .github img {
+      width: 4.5vw !important;
+      height: auto !important;
+      display: block;
     }
 
     .linkedin {
-      top: 51%;
-      right: 3%;
-      width: 4.5%;
-      z-index: 20;
-      --hover-rotate: 10deg;
+      position: absolute;
+      top: 16.5vw;
+      right: -27.5vw;
+      transform: rotate(0deg);
+    }
+    .linkedin:hover {
+      cursor: pointer;
+      filter: hue-rotate(320deg) saturate(100%);
+      transform: rotate(10deg);
+    }
+    .linkedin img {
+      width: 4.5vw !important;
+      height: auto !important;
+      display: block;
     }
 
     .instagram {
-      top: 61%;
-      right: 3%;
-      width: 4.5%;
-      z-index: 20;
-      --hover-rotate: -10deg;
+      position: absolute;
+      top: 22vw;
+      right: -27.5vw;
+      transform: rotate(0deg);
+    }
+    .instagram:hover {
+      cursor: pointer;
+      filter: hue-rotate(270deg) saturate(100%);
+      transform: rotate(-10deg);
+    }
+    .instagram img {
+      width: 4.5vw !important;
+      height: auto !important;
+      display: block;
     }
 
-    /* Small-screen fallback */
-
-    @media (max-width: 700px) {
-      body {
-        overflow: auto;
-      }
-
-      .landing-page {
-        width: 100vw;
-        min-width: 900px;
-      }
-    }
   </style>
 </head>
 
 <body>
+  <div id="eyebrow">
+    <img src="./landing/eyebrow.png">
+  </div>
 
-  <main class="landing-page" aria-label="Meruyert Mukhitkyzy personal website landing page">
+  <center>
+    <div class="vertical-center">
+      <div id="header">
+        <img src="./landing/header.svg" class="mainheaderimage">
 
-    <div class="item eyebrow">
-      <img src="./landing/eyebrow.png" alt="">
+    <div class="logo">
+          <img src="./landing/logo.svg">
+        </div>
+
+    <div class="dreambigger">
+          <img src="./landing/dreambigger.png">
+        </div>
+
+    <div class="me">
+          <img src="./landing/me.png">
+        </div>
+       
+    <div class="frame1">
+          <img src="./landing/frame1.png">
+        </div>
+
+    <div class="frame2">
+          <img src="./landing/frame2.png">
+        </div>
+
+    <div class="stitches1">
+          <img src="./landing/stitches1.png">
+        </div>
+
+    <div class="stitches2">
+          <img src="./landing/stitches2.png">
+        </div>
+
+    <div class="stitches3">
+          <img src="./landing/stitches2.png">
+        </div>
+
+    <div class="mushrooms">
+          <img src="./landing/mushrooms.png">
+        </div>
+
+    <div class="dove">
+          <img src="./landing/dove.png">
+        </div>
+
+    <div class="boy">
+          <img src="./landing/boy.png">
+        </div>
+
+    <div class="duck">
+          <img src="./landing/duck.png">
+        </div>
+
+    <div class="bee">
+          <img src="./landing/bee.png">
+        </div>
+
+    <div class="chicken">
+          <img src="./landing/chicken.png">
+        </div>
+
+    <div class="notmobilefriendly">
+          <img src="./landing/not_mobile_friendly.png">
+        </div>
+
+    <div class="workspicture">
+          <img src="./landing/works_picture.png">
     </div>
 
-    <div class="item header">
-      <img src="./landing/header.svg" alt="Meruyert">
+    <div class="skillspicture">
+          <img src="./landing/skills_picture.png">
     </div>
 
-    <div class="item logo">
-      <img src="./landing/logo.svg" alt="">
+    <div class="myresumepicture">
+          <img src="./landing/my_resume_picture.png">
     </div>
 
-    <div class="item dreambigger">
-      <img src="./landing/dreambigger.png" alt="">
+    <div class="aboutpicture">
+          <img src="./landing/about_me_picture.png">
     </div>
 
-    <div class="item me">
-      <img src="./landing/me.png" alt="">
-    </div>
+   <a href="works.html#works">
+        <div class="worksnote">
+            <img src="./landing/works_note.png" alt="Go to works page">
+            </div>
+        </a>
 
-    <div class="item frame1">
-      <img src="./landing/frame1.png" alt="">
-    </div>
+    <a href="works.html#work-with-me">
+        <div class="myresumenote">
+            <img src="./landing/my_resume_note.png" alt="Go to resume page">
+            </div>
+        </a>
 
-    <div class="item frame2">
-      <img src="./landing/frame2.png" alt="">
-    </div>
-
-    <div class="item stitches-bottom">
-      <img src="./landing/stitches1.png" alt="">
-    </div>
-
-    <div class="item stitches-left">
-      <img src="./landing/stitches2.png" alt="">
-    </div>
-
-    <div class="item stitches-right">
-      <img src="./landing/stitches2.png" alt="">
-    </div>
-
-    <div class="item works-picture">
-      <img src="./landing/works_picture.png" alt="">
-    </div>
-
-    <div class="item skills-picture">
-      <img src="./landing/skills_picture.png" alt="">
-    </div>
-
-    <div class="item resume-picture">
-      <img src="./landing/my_resume_picture.png" alt="">
-    </div>
-
-    <div class="item about-picture">
-      <img src="./landing/about_me_picture.png" alt="">
-    </div>
-
-    <div class="item mushrooms">
-      <img src="./landing/mushrooms.png" alt="">
-    </div>
-
-    <div class="item dove">
-      <img src="./landing/dove.png" alt="">
-    </div>
-
-    <div class="item duck">
-      <img src="./landing/duck.png" alt="">
-    </div>
-
-    <div class="item bee">
-      <img src="./landing/bee.png" alt="">
-    </div>
-
-    <div class="item boy">
-      <img src="./landing/boy.png" alt="">
-    </div>
-
-    <div class="item chicken">
-      <img src="./landing/chicken.png" alt="">
-    </div>
-
-    <div class="item not-mobile-friendly">
-      <img src="./landing/not_mobile_friendly.png" alt="">
-    </div>
-
-    <a class="item works-note" href="./works.html#works">
-      <img src="./landing/works_note.png" alt="Go to works page">
+    <a href="works.html#expertise">
+        <div class="skillsnote">
+            <img src="./landing/skills_note.png" alt="Go to expertise page">
+            </div>
+        </a>
+    
+    <a href="works.html#about">
+        <div class="aboutmenote">
+          <img src="./landing/about_me_note.png" alt="Go to about page">
+        </div>
     </a>
 
-    <a class="item resume-note" href="./works.html#work-with-me">
-      <img src="./landing/my_resume_note.png" alt="Go to resume page">
-    </a>
+    <a href="mailto:meruyertmukhitkyzy@gmail.com" target="_blank">
+          <div class="envelope">
+            <img src="./landing/envelope.png">
+          </div>
+        </a>
 
-    <a class="item skills-note" href="./works.html#expertise">
-      <img src="./landing/skills_note.png" alt="Go to expertise page">
-    </a>
+    <a href="https://github.com/meruyertmukhitkyzy/" target="_blank">
+        <div class="github">
+          <img src="./landing/github.svg">
+        </div>
+        </a>
 
-    <a class="item about-note" href="./works.html#about">
-      <img src="./landing/about_me_note.png" alt="Go to about page">
-    </a>
+    <a href="https://www.linkedin.com/in/meruyert-mukhitkyzy-608262357/" target="_blank">
+          <div class="linkedin">
+            <img src="./landing/linkedin.svg">
+          </div>
+        </a>
 
-    <a class="item envelope" href="mailto:meruyertmukhitkyzy@gmail.com" target="_blank">
-      <img src="./landing/envelope.png" alt="Email">
-    </a>
+    <a href="https://www.instagram.com/tadpole_into_frog/" target="_blank">
+          <div class="instagram">
+            <img src="./landing/instagram.svg">
+          </div>
+        </a>
 
-    <a class="item github" href="https://github.com/meruyertmukhitkyzy/" target="_blank">
-      <img src="./landing/github.svg" alt="GitHub">
-    </a>
+      </div>
+    </div>
+  </center>
 
-    <a class="item linkedin" href="https://www.linkedin.com/in/meruyert-mukhitkyzy-608262357/" target="_blank">
-      <img src="./landing/linkedin.svg" alt="LinkedIn">
-    </a>
+  <div class="overlay"></div>
 
-    <a class="item instagram" href="https://www.instagram.com/tadpole_into_frog/" target="_blank">
-      <img src="./landing/instagram.svg" alt="Instagram">
-    </a>
+  <script>
 
-  </main>
+  </script>
+
+<veepn-lock-screen><template shadowrootmode="open"><style>html{box-sizing:border-box;text-size-adjust:100%;word-break:normal;tab-size:4}*,:before,:after{background-repeat:no-repeat;box-sizing:border-box}:before,:after{text-decoration:inherit;vertical-align:inherit}*{padding:0;margin:0}hr{overflow:visible;height:0;color:inherit;border:0;border-top:1px solid}details,main{display:block}summary{display:list-item}small{font-size:80%}[hidden]{display:none!important}abbr[title]{border-bottom:none;text-decoration:underline;text-decoration:underline dotted}a{background-color:transparent}a:active,a:hover{outline-width:0}code,kbd,pre,samp{font-family:monospace}pre{font-size:1em}b,strong{font-weight:bolder}sub,sup{font-size:75%;line-height:0;position:relative;vertical-align:baseline}sub{bottom:-.25em}sup{top:-.5em}table{border-color:inherit;text-indent:0}iframe{border-style:none}input{border-radius:0}[type=number]::-webkit-inner-spin-button,[type=number]::-webkit-outer-spin-button{height:auto}[type=search]{appearance:textfield;outline-offset:-2px}[type=search]::-webkit-search-decoration{appearance:none}textarea{overflow:auto;resize:vertical}button,input,optgroup,select,textarea{font:inherit;color:inherit}optgroup{font-weight:700}button{overflow:visible}button,select{text-transform:none}button,[type=button],[type=reset],[type=submit],[role=button]{cursor:pointer}button::-moz-focus-inner,[type=button]::-moz-focus-inner,[type=reset]::-moz-focus-inner,[type=submit]::-moz-focus-inner{border-style:none;padding:0}button,html [type=button],[type=reset],[type=submit]{appearance:auto}button,input,select,textarea{background-color:transparent;border-style:none}button:-moz-focusring,[type=button]::-moz-focus-inner,[type=reset]::-moz-focus-inner,[type=submit]::-moz-focus-inner{outline:1px dotted ButtonText}select{appearance:none}a:focus,button:focus,input:focus,select:focus,textarea:focus{outline-width:0}select::-ms-expand{display:none}select::-ms-value{color:currentcolor}legend{border:0;color:inherit;display:table;white-space:normal;max-width:100%}::-webkit-file-upload-button{appearance:auto;color:inherit;font:inherit}[disabled]{cursor:default}img{border-style:none}progress{vertical-align:baseline}[aria-busy=true]{cursor:progress}[aria-controls]{cursor:pointer}[aria-disabled=true]{cursor:default}ul,ol{list-style-type:none}figure{margin:0}@keyframes slide-in{0%{opacity:0;transform:translateY(16px)}to{opacity:1;transform:translateY(0)}}.gradient-blue{background:radial-gradient(106.41% 128.47% at 50.15% 128.47%,#23abff,#3066ff)}.gradient-green{background:radial-gradient(92.26% 118.88% at 50.15% .13%,#00c3c3,#00aab3)}.gradient-purple{background:radial-gradient(165.12% 115.56% at 50.15% .13%,#a15aff,#00a0eb)}.bg-blue{background-color:#f2f5ff}.bg-purple{background-color:#f7f0ff}.bg-green{background-color:#ebffed}.lock-screen{font-family:FigtreeVF,sans-serif;letter-spacing:normal;position:fixed;z-index:2147483638;right:24px;bottom:24px;width:327px;border-radius:24px;overflow:hidden;box-shadow:0 24px 32px #00000014;animation:slide-in .3s ease-in-out forwards}.lock-screen__content{position:relative;padding:24px 24px 64px}.lock-screen__close{position:absolute;top:16px;right:16px;width:24px;height:24px;display:flex;align-items:center;justify-content:center;opacity:.5}.lock-screen__label{height:26px;width:fit-content;border-radius:50px;background-color:#fff3;padding-inline:16px;display:flex;align-items:center;justify-content:center;gap:8px;color:#fff;font-size:12px;line-height:18px;margin:-8px auto 16px}.lock-screen__title{color:#fff;text-align:center;font-size:20px;line-height:28px;font-weight:600;margin-bottom:8px}.lock-screen__description{color:#f5f6f7;text-align:center;font-size:14px;line-height:20px}.lock-screen__description b{font-weight:600}.lock-screen__card{position:relative;z-index:1;margin-top:-44px;background-color:#fff;border-radius:24px;padding:32px 20px 20px}.lock-screen__inner{margin-bottom:24px}.lock-screen__submit{display:flex;align-items:center;justify-content:center;gap:10px;font-weight:700;font-size:16px;height:40px;width:100%;border-radius:12px;padding-inline:16px;background-color:#f70;color:#fff;margin-bottom:16px}.lock-screen__skip{display:flex;align-items:center;justify-content:center;font-size:14px;line-height:20px;color:#82829c;margin-inline:auto}.price-card{border:1px solid #f2f2fc;background:linear-gradient(254.14deg,#fafbff .04%,#f5f8ff 100.04%);border-radius:24px;padding:24px 28px}.price-card__label{color:#4a5764;text-align:center;font-size:14px;line-height:20px;text-transform:uppercase;margin-bottom:16px}.price-card__price{display:flex;justify-content:center;align-items:flex-start;column-gap:2px;margin-bottom:12px}.price-card__currency{color:#515478;font-size:18px;line-height:28px}.price-card__number{color:#14142a;text-align:center;font-size:64px;line-height:54px}.price-card__wrap{display:flex;flex-direction:column}.price-card__decimal{color:#515478;font-size:18px;line-height:28px;font-weight:600}.price-card__period{color:#515478;font-size:14px;line-height:20px;margin-top:-6px}.price-card__discount{position:relative;display:flex;align-items:center;justify-content:center;margin-bottom:12px}.price-card__discount-divider{position:absolute;z-index:0;top:50%;left:0;width:100%;height:1px;background-color:#dbe2f9;transform:translateY(-50%)}.price-card__discount-icon{position:absolute;z-index:1;top:50%;left:50%;transform:translate(-50%,-50%)}.price-card__discount-text{position:relative;z-index:2;color:#fff;font-size:12px;font-weight:600;line-height:18px}.price-card__features{display:flex;align-items:center;justify-content:center;column-gap:16px}.price-card__feature{color:#222e3a;font-size:14px;line-height:20px;display:flex;align-items:center;gap:6px}.price-card__feature:before{content:"";display:block;width:4px;height:4px;background-color:#20df9e;border-radius:50%;flex-shrink:0}.features-list{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}.features-list__item{display:flex;flex-direction:column;align-items:center;gap:6px}.features-list__icon{width:52px;height:52px;border-radius:12px;display:flex;align-items:center;justify-content:center}.features-list__text{color:#293a53;text-align:center;font-size:16px;line-height:24px;letter-spacing:-.1px}</style></template><style>@font-face{font-family:FigtreeVF;src:url(chrome-extension://majdfhpaihoncoakbjgbdhglocklcgno/fonts/FigtreeVF.woff2) format("woff2 supports variations"),url(chrome-extension://majdfhpaihoncoakbjgbdhglocklcgno/fonts/FigtreeVF.woff2) format("woff2-variations");font-weight:100 1000;font-display:swap}</style></veepn-lock-screen>
 
 </body>
 </html>
