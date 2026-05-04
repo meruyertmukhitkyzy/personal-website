@@ -1,0 +1,409 @@
+/* ================================
+   BASE
+================================ */
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  min-height: 100svh;
+}
+
+body {
+  background-size: cover;
+  background-position: center;
+  background-repeat: repeat;
+  font-family: Arial, sans-serif;
+}
+
+img {
+  display: block;
+  max-width: 100%;
+  height: auto;
+  user-select: none;
+}
+
+a {
+  text-decoration: none;
+}
+
+
+/* ================================
+   DESKTOP LANDING
+================================ */
+
+body {
+  display: grid;
+  place-items: center;
+  overflow: hidden;
+  background-image: url("./landing/background.png");
+}
+
+.desktop-landing {
+  width: min(100vw, calc(100svh * 1.88));
+  aspect-ratio: 1.88 / 1;
+  position: relative;
+  overflow: hidden;
+}
+
+.desktop-landing img {
+  width: 100%;
+}
+
+.item {
+  position: absolute;
+}
+
+.item a,
+a.item {
+  display: block;
+}
+
+a.item {
+  transition: transform 0.2s ease, filter 0.2s ease;
+}
+
+a.item:hover {
+  cursor: pointer;
+  transform: rotate(var(--hover-rotate, 0deg)) scale(1.03);
+}
+
+
+/* Background / frame */
+
+.eyebrow {
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 1;
+}
+
+.header {
+  top: 15%;
+  left: 31%;
+  width: 42%;
+  z-index: 5;
+}
+
+.logo {
+  top: 19.2%;
+  left: 25%;
+  width: 5%;
+  z-index: 6;
+}
+
+.dreambigger {
+  top: 0%;
+  left: 5%;
+  width: 13.5%;
+  z-index: 7;
+}
+
+.me {
+  bottom: 0.5%;
+  left: 0%;
+  width: 30%;
+  z-index: 8;
+}
+
+.frame1 {
+  bottom: 2%;
+  left: 1%;
+  width: 9%;
+  z-index: 9;
+}
+
+.frame2 {
+  bottom: 2%;
+  right: 1%;
+  width: 9%;
+  z-index: 9;
+}
+
+.stitches-bottom {
+  bottom: 0%;
+  left: 0%;
+  width: 96%;
+  z-index: 2;
+}
+
+.stitches-left {
+  top: 13%;
+  left: 0.5%;
+  width: 2.2%;
+  z-index: 2;
+}
+
+.stitches-right {
+  top: 14%;
+  right: 1%;
+  width: 2.2%;
+  z-index: 2;
+}
+
+
+/* Decorative objects */
+
+.works-picture {
+  bottom: 5%;
+  left: 32%;
+  width: 13%;
+  z-index: 6;
+}
+
+.skills-picture {
+  top: 66%;
+  left: 51%;
+  width: 15%;
+  z-index: 6;
+}
+
+.resume-picture {
+  top: 35%;
+  left: 63%;
+  width: 10%;
+  z-index: 6;
+}
+
+.about-picture {
+  top: 25%;
+  left: 80%;
+  width: 8%;
+  z-index: 6;
+}
+
+.mushrooms {
+  bottom: 5%;
+  right: 7%;
+  width: 20%;
+  z-index: 6;
+}
+
+.dove {
+  top: 39%;
+  left: 25%;
+  width: 9%;
+  z-index: 6;
+}
+
+.duck {
+  top: 30%;
+  left: 16%;
+  width: 8%;
+  z-index: 6;
+}
+
+.bee {
+  top: 36%;
+  left: 49%;
+  width: 7%;
+  z-index: 7;
+}
+
+.boy {
+  bottom: 35%;
+  right: 9%;
+  width: 9%;
+  z-index: 7;
+}
+
+.human {
+  top: 35%;
+  left: 35%;
+  width: 10%;
+  z-index: 5;
+}
+
+/* Clickable notes */
+
+.works-note {
+  bottom: 30%;
+  left: 33.5%;
+  width: 10%;
+  z-index: 20;
+  --hover-rotate: -5deg;
+}
+
+.resume-note {
+  top: 45%;
+  left: 74%;
+  width: 10%;
+  z-index: 20;
+  --hover-rotate: -5deg;
+}
+
+.skills-note {
+  top: 85%;
+  left: 53.5%;
+  width: 10%;
+  z-index: 20;
+  --hover-rotate: 5deg;
+}
+
+.about-note {
+  top: 16%;
+  left: 79.5%;
+  width: 9%;
+  z-index: 20;
+  --hover-rotate: 5deg;
+}
+
+
+/* Social icons */
+
+.envelope {
+  top: 32%;
+  right: 3%;
+  width: 5%;
+  z-index: 20;
+  --hover-rotate: 5deg;
+}
+
+.github {
+  top: 41%;
+  right: 3.2%;
+  width: 4.5%;
+  z-index: 20;
+  --hover-rotate: -10deg;
+}
+
+.linkedin {
+  top: 51%;
+  right: 3%;
+  width: 4.5%;
+  z-index: 20;
+  --hover-rotate: 10deg;
+}
+
+.instagram {
+  top: 61%;
+  right: 3%;
+  width: 4.5%;
+  z-index: 20;
+  --hover-rotate: -10deg;
+}
+
+
+/* Hide mobile version by default */
+
+.mobile-landing {
+  display: none;
+}
+
+
+/* ================================
+   MOBILE LANDING
+================================ */
+
+@media (max-width: 700px) {
+
+  body {
+    display: block;
+    overflow-x: hidden;
+    overflow-y: auto;
+    min-height: 100svh;
+    background-image: url("./landing/background_mobile.jpeg");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+  }
+
+  .desktop-landing {
+    display: none;
+  }
+
+  .mobile-landing {
+    display: block;
+    min-height: 100svh;
+    padding: 24px 18px 40px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .mobile-landing img {
+    display: block;
+    height: auto;
+    user-select: none;
+  }
+
+  .mobile-content {
+    position: relative;
+    z-index: 5;
+    min-height: calc(100svh - 64px);
+    padding-top: 5%;
+  }
+
+  .mobile-title {
+    width: 100%;
+    max-width: 100%;
+    margin-bottom: 20px;
+  }
+
+  .mobile-nav {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 6px;
+
+    width: 100%;
+    margin-top: 10px;
+    margin-bottom: 24px;
+  }
+
+  .mobile-note {
+    display: block;
+    width: 50vw;
+    max-width: 50vw;
+    min-width: 0;
+  }
+
+  .mobile-note img {
+    width: 100%;
+    max-width: 100%;
+  }
+
+  .mobile-about {
+    transform: rotate(3deg);
+  }
+
+  .mobile-expertise {
+    transform: rotate(-2deg);
+  }
+
+  .mobile-works {
+    transform: rotate(2deg);
+  }
+
+  .mobile-myresume {
+    transform: rotate(-3deg);
+  }
+
+  .mobile-socials {
+    display: flex;
+    flex-wrap: nowrap;
+    gap: 20px;
+    align-items: center;
+    justify-content: flex-end;
+    margin-top: 20px;
+    margin-left: 20%;
+  }
+
+  .mobile-socials img {
+    width: 50px;
+    height: 50px;
+    object-fit: contain;
+  }
+
+  .mobile-notfriendly {
+    position: relative;
+    left: -5%;
+    width: 200px;
+    max-width: 70%;
+    z-index: 2;
+  }
+}
