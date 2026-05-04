@@ -2538,9 +2538,28 @@ textarea.form-input::-webkit-resizer { display: none; }
     white-space: nowrap;
   }
 
+.navbar {
+    padding: 0 4px;
+  }
+
+  .navbar-list {
+    flex-wrap: nowrap;
+    justify-content: space-between;
+    gap: 0;
+    padding: 0 6px;
+  }
+
+  .navbar-item {
+    flex: 1;
+  }
+
   .navbar-link {
-  font-size: 9px;
-}
+    width: 100%;
+    text-align: center;
+    font-size: 12px;
+    padding: 18px 2px;
+    white-space: nowrap;
+  }
 
 }
 
